@@ -23,9 +23,10 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 11
+      - name: Build with Gradle
+        run: ./gradlew clean build
       - run: ls -la
       - run: ls -la ../
-      - run: find /* -name 'gradlew'
 #  push_to_registry:
 #    name: Push Docker image to Docker Hub
 #    runs-on: ubuntu-latest
