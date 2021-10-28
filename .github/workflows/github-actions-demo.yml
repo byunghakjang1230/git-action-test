@@ -16,7 +16,8 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - run: docker -v
-  Build_Jar:
+  push_to_registry:
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -27,14 +28,6 @@ jobs:
           java-version: 11
       - name: Build with Gradle
         run: ./gradlew clean build
-      - run: ls -la
-      - run: ls -la ../
-  push_to_registry:
-    name: Push Docker image to Docker Hub
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out the repo
-        uses: actions/checkout@v2
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
